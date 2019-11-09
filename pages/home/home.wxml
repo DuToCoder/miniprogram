@@ -1,0 +1,22 @@
+<!--pages/home/home.wxml-->
+<scroll-view style='height:{{windowHeight}}rpx'
+             scroll-y
+             bindscrolltolower="loadMore"
+             scroll-with-animation="true"
+             scroll-top="{{topPosition}}"
+             bindscroll="handleScrollPosition">
+
+  <!-- 轮播图 -->
+  <d-swiper list="{{banners}}"/>
+  <!-- 推荐数据的展示-->
+  <d-recommend list="{{recommends}}" bind:imageload="handleImageload"/>
+  <!-- 展示本周流行-->
+  <d-popular/>
+  <d-tab-control titles="{{titles}}" 
+               id="tab-control"
+               bind:tabclick="handleTabclick"
+               class="{{isTabFixed ? 'fixed':''}}"/>
+  <d-tab-control titles="{{titles}}" wx:if="{{isTabFixed}}"/>
+  <d-goods goods="{{goods[currentType].list}}"/>
+  <d-back-top bindtap="onBackTop" wx:if="{{showBackTop}}"/>
+</scroll-view>
